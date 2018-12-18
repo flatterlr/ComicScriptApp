@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+
+	body, html{
+		
+		box-sizing: border-box; 
+	}
+	.ace_editor {
+		border: 1px solid lightgray;
+		margin: auto;
+		height: 200px;
+		width: 80%;
+	}
+	.scrollmargin {
+		height: 80px;
+        text-align: center;
+	}
+    #outputIframe{
+        border: 1px solid lightgray;
+        border-radius: 8px; 
+    }
+	.left25{
+		border: 1px solid lightgrey;
+		border-radius: 8px;  
+	}
+	#pageContainer{
+		min-height: 97vh;;
+		box-sizing: border-box; 
+	}
+	#topRowIframe{
+		min-height: 600px; 
+	}
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+</head>
+<body>
+
+<div class='container-fluid d-flex flex-column h-100 my-3' id='pageContainer'>
+
+		<div class='row mb-3 d-flex flex-column' id='topRowIframe'>
+			<div class='col-sm-12'>
+				<h2 class='text-center'>ComicScript Playground</h2>
+			</div>
+			<div class='col-sm-12 flex-grow-1 d-flex'>
+				<iframe src="" id='outputIframe' class='w-100'></iframe>
+			</div>
+		</div>
+		
+		<div class='row flex-grow-1'>
+			<div class='col-sm-3'>
+					<div class='left25 h-100'>
+							<h3 class='text-center'>Instructions</h3>
+						</div>
+			</div>
+			<div class='col-sm-9'>
+					<ul class="nav nav-tabs" role='tablist'>
+							<li class="nav-item">
+								<a class="nav-link active" href="#htmlTab" data-toggle="tab" role='tab'>HTML</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#cssTab" data-toggle="tab" role='tab'>CSS</a>
+							</li>
+							<li>
+								<button class='btn btn-primary ml-4' id='btnRenderHTML' data-toggle="tooltip" data-placement="top" title="Run Your Code Above"><i class="fas fa-running"></i></button>
+							</li>
+						</ul>
+	
+						<div class="tab-content" id="myTabContent">
+							<div class='tab-pane fade show active mb-3' id='htmlTab' role="tabpanel" aria-labelledby="html-tab">
+								<div class="w-100" id="editorHTML"></div>
+							</div>
+							<div class='tab-pane fade mb-3' id='cssTab' role="tabpanel" aria-labelledby="css-tab">
+								<div class="w-100" id="editorCSS"></div>
+							</div>
+						</div>
+						
+						<div>
+							<h5 class=''>Javascript</h5>
+							<div class="w-100" id="editorJavascript"></div>
+						</div>
+			</div>
+		</div>
+			
+
+</div>
+
+
+
+
+<!-- load ace -->
+<script src="Scripts/Library/Ace/src/ace.js"></script>
+<script src="Scripts/Library/Ace/src/ext-language_tools.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- load user scripts -->
+<script src="scripts/indexScript.js"></script>
+
+</body>
+</html>
