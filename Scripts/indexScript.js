@@ -30,35 +30,42 @@ let editorJavascript = ace.edit("editorJavascript", {
 
 $(function() {
 	$('[data-toggle="tooltip"]').tooltip(); 
-	
+    
+    initEditorContent(); 
     $('#btnRenderHTML').click(function(){
         runIframe(); 
+
     });
 
-    setupEditors(); 
+    
 });
+
+function iframeLoaded(){
+    $('#outputIframe').contents().find('body').append('<script>' + editorJavascript.getValue() + '<\/script>');
+}
 
 function runIframe() {
     var _editorHTML = editorHTML.getValue();
-	var _editorCSS = editorCSS.getValue();
     var iframe = document.getElementById('outputIframe');
     iframe.contentWindow.document.open();
-	//iframe.contentWindow.document.write(_editorCSS);
-	
-	//$('#outputIframe').contents().find('body').html(editorHTML.getValue()); 
-	//$('#outputIframe').contents().find('head').append(editorCSS.getValue()); 
-	//$(window.frames['outputIframe'].document).append(editorHTML.getValue());
-	//$('head', window.frames['outputIframe'].document).append(editorCSS.getValue());
     iframe.contentWindow.document.write(_editorHTML);
     iframe.contentWindow.document.close();
 	
-	$('#outputIframe').contents().find('head').append('<style>' + editorCSS.getValue() + '</style>');
+    $('#outputIframe').contents().find('head').append('<style>' + editorCSS.getValue() + '</style>');
+    //add onload event to iframe to ensure editor script is applied after other scripts have loaded/ executed onload events
+    $('#outputIframe').contents().find('body').append('<script>window.onload = function() {parent.iframeLoaded();}<\/script>');
 }
 
-function setupEditors(){
+function initEditorContent(){
+
+    let externalHTML = ""; 
+    $.get("iFrameHTML/initialComic.html", function( externalHTML ) {
+        editorHTML.setValue(externalHTML); 
+    });
     
-    editorHTML.setValue("<!DOCTYPE html>\n\u0009<body>\n\n\u0009</body>\n</html>", 1);
     editorHTML.focus();
     editorHTML.gotoLine(3,0, true);
     editorHTML.indent(); editorHTML.indent(); 
+
+    editorJavascript.resize(); 
 }
